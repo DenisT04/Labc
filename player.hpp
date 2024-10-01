@@ -2,9 +2,9 @@
 #include "point.hpp"
 
 class Player {
-    char _marker;                  // Marker-ul jucătorului ('X' sau 'O')
+    char _marker;
 public:
-    Player(char marker);           // Constructor care stabilește marker-ul jucătorului
-    char GetMarker() const;        // Returnează marker-ul
-    Point GetMove() const;         // Jucătorul alege o mutare (introduce coordonate)
-};
+    Player(char marker);
+    char GetMarker() const;
+    Point GetMove() const;
+    };

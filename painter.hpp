@@ -4,6 +4,6 @@
 
 class Painter {
 public:
-    void DrawBoard(const Board& board);  // Afișează tabla de joc
-    void DisplayMessage(const char* message);  // Afișează un mesaj pe ecran
+    void DrawBoard(const Board& board);
+    void DisplayMessage(const char* message);
 };
