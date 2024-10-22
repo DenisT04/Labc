@@ -1,13 +1,32 @@
 #pragma once
 #include "point.hpp"
 
-class Board {
-    char _grid[3][3];  // Reprezintă tabla de joc (3x3)
+class Board : public Entity {
+    char _grid[3][3];
+
 public:
-    Board();                        // Constructor care inițializează tabla goală
-    bool IsFull() const;            // Verifică dacă tabla este plină
-    bool IsEmpty(const Point& pos) const;  // Verifică dacă o poziție este liberă
-    void PlaceMarker(const Point& pos, char marker);  // Pune un marker (X sau O) pe tablă
-    bool CheckWin(char marker) const;    // Verifică dacă marker-ul dat a câștigat
-    void Display() const;           // Afișează tabla de joc
+    // Constructor implicit
+    Board();
+
+    // Constructor de inițializare
+    Board(char initialGrid[3][3]);
+
+    // Constructor de copiere
+    Board(const Board& other);
+
+    // Operator de atribuire
+    Board& operator=(const Board& other);
+
+    // Operator de comparație
+    bool operator==(const Board& other) const;
+    bool operator!=(const Board& other) const;
+
+    bool IsFull() const;
+    bool IsEmpty(const Point& pos) const;
+    void PlaceMarker(const Point& pos, char marker);
+    bool CheckWin(char marker) const;
+
+    // Suprascriere metode virtuale din Entity
+    void Print(std::ostream& os) const override;
+    void Read(std::istream& is) override;
 };

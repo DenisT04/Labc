@@ -1,22 +1,41 @@
-# Denumirea proiectului
-Tic-Tac-Toe
+# Tic-Tac-Toe Game
 
-# Ce reprezintă proiectul
-Acest proiect implementează jocul clasic Tic-Tac-Toe folosind limbajul de programare C++. Jocul implică doi jucători care alternează mutările pe o tablă de 3x3. Scopul fiecărui jucător este de a forma o linie de trei simboluri identice (X sau O) pe orizontală, verticală sau diagonală.
+Acest proiect este un joc simplu de **Tic-Tac-Toe**, implementat în C++.
 
-# Care sunt regulile jocului Tic-Tac-Toe
-Jocul se desfășoară pe o tablă de 3x3.
-Doi jucători joacă, unul utilizând simbolul X, celălalt simbolul O.
-Jucătorii plasează alternativ simbolurile lor într-o celulă goală de pe tablă.
-Câștigătorul este primul care reușește să alinieze trei simboluri identice pe orizontală, verticală sau diagonală.
-Jocul se termină dacă un jucător câștigă sau dacă tabla este completă fără a exista un câștigător, caz în care jocul se încheie cu egalitate.
+## Structura Proiectului
 
-# Tipuri de date noi declarate
-Point: Reprezintă o poziție pe tabla de joc, folosind coordonatele x și y.
-Board: Reprezintă tabla de joc 3x3 și gestionează plasarea simbolurilor, verificarea câștigătorului și afișarea stării tablei.
-Player: Reprezintă un jucător al jocului, fie X, fie O. Gestionază simbolul și mutările jucătorului.
-GameEngine: Controlează logica principală a jocului, inclusiv alternarea între jucători, determinarea câștigătorului și starea generală a jocului.
-Painter: Este responsabil de afișarea grafică a tablei de joc și a mesajelor pentru jucători.
+- **board.hpp / board.cpp**: Gestionarea tablei de joc.
+- **gameengine.hpp / gameengine.cpp**: Motorul jocului, logica principală.
+- **painter.hpp / painter.cpp**: Desenarea tablei și afișarea mesajelor.
+- **player.hpp / player.cpp**: Definirea jucătorilor și gestionarea mutărilor.
+- **point.hpp / point.cpp**: Reprezentarea punctelor pe tabla de joc.
+- **main.cpp**: Funcția principală care inițializează și rulează jocul.
+
+## Pași pentru construirea proiectului
+
+1. Asigură-te că ai instalat un compilator C++ (precum `g++`).
+2. În terminal, navighează către directorul proiectului.
+3. Rulează comanda:
+
+    ```bash
+    make
+    ```
+
+   Aceasta va compila toate fișierele sursă și va genera executabilul `TicTacToe.exe`.
+
+4. Pentru a curăța fișierele obiect și executabilul, rulează:
+
+    ```bash
+    make clean
+    ```
+
+## Rularea jocului
+
+După ce proiectul a fost compilat, poți rula jocul executând:
+
+```bash
+./TicTacToe.exe
+
 
 
 
