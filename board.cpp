@@ -1,59 +1,63 @@
 #include "board.hpp"
 #include <iostream>
 
-// Constructor: inițializează tabla de joc cu spații goale
+// Constructor implicit
 Board::Board() {
     for (int i = 0; i < 3; ++i)
         for (int j = 0; j < 3; ++j)
             _grid[i][j] = ' ';
 }
 
-// Verifică dacă tabla este complet plină
-bool Board::IsFull() const {
+// Constructor de inițializare
+Board::Board(char initialGrid[3][3]) {
     for (int i = 0; i < 3; ++i)
         for (int j = 0; j < 3; ++j)
-            if (_grid[i][j] == ' ')
+            _grid[i][j] = initialGrid[i][j];
+}
+
+// Constructor de copiere
+Board::Board(const Board& other) {
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < 3; ++j)
+            _grid[i][j] = other._grid[i][j];
+}
+
+// Operator de atribuire
+Board& Board::operator=(const Board& other) {
+    if (this != &other) {
+        for (int i = 0; i < 3; ++i)
+            for (int j = 0; j < 3; ++j)
+                _grid[i][j] = other._grid[i][j];
+    }
+    return *this;
+}
+
+// Operator de comparație
+bool Board::operator==(const Board& other) const {
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < 3; ++j)
+            if (_grid[i][j] != other._grid[i][j])
                 return false;
     return true;
 }
 
-// Verifică dacă o poziție specifică este goală
-bool Board::IsEmpty(const Point& pos) const {
-    return _grid[pos.x][pos.y] == ' ';
+bool Board::operator!=(const Board& other) const {
+    return !(*this == other);
 }
 
-// Plasează un marker pe tablă la poziția specificată
-void Board::PlaceMarker(const Point& pos, char marker) {
-    if (IsEmpty(pos))
-        _grid[pos.x][pos.y] = marker;
-}
-
-// Verifică dacă un marker a câștigat jocul
-bool Board::CheckWin(char marker) const {
-    // Verifică rânduri și coloane
-    for (int i = 0; i < 3; ++i) {
-        if (_grid[i][0] == marker && _grid[i][1] == marker && _grid[i][2] == marker)
-            return true;
-        if (_grid[0][i] == marker && _grid[1][i] == marker && _grid[2][i] == marker)
-            return true;
-    }
-    // Verifică diagonale
-    if (_grid[0][0] == marker && _grid[1][1] == marker && _grid[2][2] == marker)
-        return true;
-    if (_grid[0][2] == marker && _grid[1][1] == marker && _grid[2][0] == marker)
-        return true;
-
-    return false;
-}
-
-// Afișează tabla de joc
-void Board::Display() const {
+// Suprascrierea operatorului de afișare
+void Board::Print(std::ostream& os) const {
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
-            std::cout << _grid[i][j];
-            if (j < 2) std::cout << " | ";
+            os << _grid[i][j] << " ";
         }
-        std::cout << std::endl;
-        if (i < 2) std::cout << "---------" << std::endl;
+        os << std::endl;
     }
+}
+
+// Suprascrierea operatorului de citire
+void Board::Read(std::istream& is) {
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < 3; ++j)
+            is >> _grid[i][j];
 }

@@ -1,44 +1,43 @@
 #include "gameengine.hpp"
-#include <iostream>
 
-// Constructorul jocului, inițializează tabla și jucătorii
+// Constructor implicit
 GameEngine::GameEngine() : _player1('X'), _player2('O'), _currentPlayer(&_player1) {}
 
-// Inițializează jocul (poate reseta tabla sau alte componente)
-void GameEngine::Init() {
-    _board = Board(); // Resetează tabla
-    _currentPlayer = &_player1; // Începe cu jucătorul 1
-}
+// Constructor de inițializare
+GameEngine::GameEngine(const Player& p1, const Player& p2) : _player1(p1), _player2(p2), _currentPlayer(&_player1) {}
 
-// Rulare joc, controlul principal al jocului
-void GameEngine::Run() {
-    while (!IsGameOver()) {
-        _board.Display();
-        Point move = _currentPlayer->GetMove();
-        if (_board.IsEmpty(move)) {
-            _board.PlaceMarker(move, _currentPlayer->GetMarker());
-            if (_board.CheckWin(_currentPlayer->GetMarker())) {
-                std::cout << "Jucătorul " << _currentPlayer->GetMarker() << " a câștigat!" << std::endl;
-                _board.Display();
-                break;
-            }
-            SwitchPlayer();
-        } else {
-            std::cout << "Poziție invalidă! Încearcă din nou." << std::endl;
-        }
+// Constructor de copiere
+GameEngine::GameEngine(const GameEngine& other) : _board(other._board), _player1(other._player1), _player2(other._player2), _currentPlayer(other._currentPlayer == &other._player1 ? &_player1 : &_player2) {}
+
+// Operator de atribuire
+GameEngine& GameEngine::operator=(const GameEngine& other) {
+    if (this != &other) {
+        _board = other._board;
+        _player1 = other._player1;
+        _player2 = other._player2;
+        _currentPlayer = (other._currentPlayer == &other._player1) ? &_player1 : &_player2;
     }
-
-    if (_board.IsFull()) {
-        std::cout << "Jocul s-a terminat cu egalitate!" << std::endl;
-    }
+    return *this;
 }
 
-// Schimbă rândul jucătorului curent
-void GameEngine::SwitchPlayer() {
-    _currentPlayer = (_currentPlayer == &_player1) ? &_player2 : &_player1;
+// Operator de comparație
+bool GameEngine::operator==(const GameEngine& other) const {
+    return _board == other._board && _player1 == other._player1 && _player2 == other._player2;
 }
 
-// Verifică dacă jocul s-a terminat (câștig sau egalitate)
-bool GameEngine::IsGameOver() const {
-    return _board.IsFull() || _board.CheckWin('X') || _board.CheckWin('O');
+bool GameEngine::operator!=(const GameEngine& other) const {
+    return !(*this == other);
+}
+
+// Suprascrierea operatorului de afișare
+void GameEngine::Print(std::ostream& os) const {
+    os << "Game Engine Status: \n";
+    os << _board;
+    os << "\nCurrent Player: " << (_currentPlayer == &_player1 ? "Player 1" : "Player 2") << "\n";
+}
+
+// Suprascrierea operatorului de citire
+void GameEngine::Read(std::istream& is) {
+    is >> _board;
+    // Citire mai complexă ar trebui implementată pentru jucători
 }
