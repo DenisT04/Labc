@@ -1,16 +1,18 @@
 #pragma once
 #include "board.hpp"
 #include "player.hpp"
+#include <memory>
+#include <iostream>
 
 class GameEngine {
     Board _board;
-    Player _player1;
-    Player _player2; 
-    Player* _currentPlayer;
+    std::shared_ptr<Player> _player1;
+    std::shared_ptr<Player> _player2;
+    std::shared_ptr<Player> _currentPlayer;
+
 public:
-    GameEngine(); 
-    void Init();
-    void Run();
+    GameEngine(const std::shared_ptr<Player>& p1, const std::shared_ptr<Player>& p2);
+    void Run(std::istream& is, std::ostream& os);
     void SwitchPlayer();
-    bool IsGameOver() const;
+    bool IsGameOver(char& winner) const;
 };

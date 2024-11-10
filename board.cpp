@@ -1,59 +1,50 @@
 #include "board.hpp"
-#include <iostream>
+#include <algorithm>
 
-// Constructor: inițializează tabla de joc cu spații goale
+// Constructor implicit
 Board::Board() {
-    for (int i = 0; i < 3; ++i)
-        for (int j = 0; j < 3; ++j)
-            _grid[i][j] = ' ';
+    for (auto& row : _grid) {
+        std::fill(row.begin(), row.end(), ' ');
+    }
 }
 
-// Verifică dacă tabla este complet plină
 bool Board::IsFull() const {
-    for (int i = 0; i < 3; ++i)
-        for (int j = 0; j < 3; ++j)
-            if (_grid[i][j] == ' ')
-                return false;
-    return true;
+    return std::all_of(_grid.begin(), _grid.end(), [](const std::array<char, 3>& row) {
+        return std::all_of(row.begin(), row.end(), [](char cell) { return cell != ' '; });
+    });
 }
 
-// Verifică dacă o poziție specifică este goală
 bool Board::IsEmpty(const Point& pos) const {
     return _grid[pos.x][pos.y] == ' ';
 }
 
-// Plasează un marker pe tablă la poziția specificată
 void Board::PlaceMarker(const Point& pos, char marker) {
-    if (IsEmpty(pos))
+    if (IsEmpty(pos)) {
         _grid[pos.x][pos.y] = marker;
-}
-
-// Verifică dacă un marker a câștigat jocul
-bool Board::CheckWin(char marker) const {
-    // Verifică rânduri și coloane
-    for (int i = 0; i < 3; ++i) {
-        if (_grid[i][0] == marker && _grid[i][1] == marker && _grid[i][2] == marker)
-            return true;
-        if (_grid[0][i] == marker && _grid[1][i] == marker && _grid[2][i] == marker)
-            return true;
     }
-    // Verifică diagonale
-    if (_grid[0][0] == marker && _grid[1][1] == marker && _grid[2][2] == marker)
-        return true;
-    if (_grid[0][2] == marker && _grid[1][1] == marker && _grid[2][0] == marker)
-        return true;
-
-    return false;
 }
 
-// Afișează tabla de joc
-void Board::Display() const {
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            std::cout << _grid[i][j];
-            if (j < 2) std::cout << " | ";
+bool Board::CheckWin(char marker) const {
+    // Verifică linii, coloane și diagonale
+    for (const auto& row : _grid) {
+        if (std::all_of(row.begin(), row.end(), [marker](char cell) { return cell == marker; })) {
+            return true;
         }
-        std::cout << std::endl;
-        if (i < 2) std::cout << "---------" << std::endl;
+    }
+    for (int col = 0; col < 3; ++col) {
+        if (_grid[0][col] == marker && _grid[1][col] == marker && _grid[2][col] == marker) {
+            return true;
+        }
+    }
+    return (_grid[0][0] == marker && _grid[1][1] == marker && _grid[2][2] == marker) ||
+           (_grid[0][2] == marker && _grid[1][1] == marker && _grid[2][0] == marker);
+}
+
+void Board::Display(std::ostream& os) const {
+    for (const auto& row : _grid) {
+        for (char cell : row) {
+            os << cell << " ";
+        }
+        os << "\n";
     }
 }

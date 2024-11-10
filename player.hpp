@@ -1,10 +1,15 @@
 #pragma once
 #include "point.hpp"
+#include <string>
+#include <memory>
 
 class Player {
     char _marker;
+    std::string _name;
+
 public:
-    Player(char marker);
+    Player(const std::string& name, char marker);
     char GetMarker() const;
-    Point GetMove() const;
-    };
+    std::string GetName() const;
+    Point GetMove(std::istream& is) const;
+};

@@ -1,12 +1,15 @@
 #include "painter.hpp"
 #include <iostream>
 
-// Desenează tabla de joc pe ecran
-void Painter::DrawBoard(const Board& board) {
-    board.Display();
+// Constructor implicit
+Painter::Painter() {}
+
+// Constructor de copiere
+Painter::Painter(const Painter& other) {}
+
+// Operator de atribuire
+Painter& Painter::operator=(const Painter& other) {
+    return *this;
 }
 
-// Afișează un mesaj general
-void Painter::DisplayMessage(const char* message) {
-    std::cout << message << std::endl;
-}
+// Restul metodelor rămân la fel (DrawBoard, DisplayMessage, etc.)
