@@ -1,63 +1,50 @@
 #include "board.hpp"
-#include <iostream>
+#include <algorithm>
 
 // Constructor implicit
 Board::Board() {
-    for (int i = 0; i < 3; ++i)
-        for (int j = 0; j < 3; ++j)
-            _grid[i][j] = ' ';
-}
-
-// Constructor de inițializare
-Board::Board(char initialGrid[3][3]) {
-    for (int i = 0; i < 3; ++i)
-        for (int j = 0; j < 3; ++j)
-            _grid[i][j] = initialGrid[i][j];
-}
-
-// Constructor de copiere
-Board::Board(const Board& other) {
-    for (int i = 0; i < 3; ++i)
-        for (int j = 0; j < 3; ++j)
-            _grid[i][j] = other._grid[i][j];
-}
-
-// Operator de atribuire
-Board& Board::operator=(const Board& other) {
-    if (this != &other) {
-        for (int i = 0; i < 3; ++i)
-            for (int j = 0; j < 3; ++j)
-                _grid[i][j] = other._grid[i][j];
+    for (auto& row : _grid) {
+        std::fill(row.begin(), row.end(), ' ');
     }
-    return *this;
 }
 
-// Operator de comparație
-bool Board::operator==(const Board& other) const {
-    for (int i = 0; i < 3; ++i)
-        for (int j = 0; j < 3; ++j)
-            if (_grid[i][j] != other._grid[i][j])
-                return false;
-    return true;
+bool Board::IsFull() const {
+    return std::all_of(_grid.begin(), _grid.end(), [](const std::array<char, 3>& row) {
+        return std::all_of(row.begin(), row.end(), [](char cell) { return cell != ' '; });
+    });
 }
 
-bool Board::operator!=(const Board& other) const {
-    return !(*this == other);
+bool Board::IsEmpty(const Point& pos) const {
+    return _grid[pos.x][pos.y] == ' ';
 }
 
-// Suprascrierea operatorului de afișare
-void Board::Print(std::ostream& os) const {
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            os << _grid[i][j] << " ";
+void Board::PlaceMarker(const Point& pos, char marker) {
+    if (IsEmpty(pos)) {
+        _grid[pos.x][pos.y] = marker;
+    }
+}
+
+bool Board::CheckWin(char marker) const {
+    // Verifică linii, coloane și diagonale
+    for (const auto& row : _grid) {
+        if (std::all_of(row.begin(), row.end(), [marker](char cell) { return cell == marker; })) {
+            return true;
         }
-        os << std::endl;
     }
+    for (int col = 0; col < 3; ++col) {
+        if (_grid[0][col] == marker && _grid[1][col] == marker && _grid[2][col] == marker) {
+            return true;
+        }
+    }
+    return (_grid[0][0] == marker && _grid[1][1] == marker && _grid[2][2] == marker) ||
+           (_grid[0][2] == marker && _grid[1][1] == marker && _grid[2][0] == marker);
 }
 
-// Suprascrierea operatorului de citire
-void Board::Read(std::istream& is) {
-    for (int i = 0; i < 3; ++i)
-        for (int j = 0; j < 3; ++j)
-            is >> _grid[i][j];
+void Board::Display(std::ostream& os) const {
+    for (const auto& row : _grid) {
+        for (char cell : row) {
+            os << cell << " ";
+        }
+        os << "\n";
+    }
 }

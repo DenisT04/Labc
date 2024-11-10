@@ -1,30 +1,15 @@
 #pragma once
 #include "point.hpp"
+#include <string>
+#include <memory>
 
-class Player : public Entity {
+class Player {
     char _marker;
+    std::string _name;
 
 public:
-    // Constructor implicit
-    Player();
-
-    // Constructor de inițializare
-    Player(char marker);
-
-    // Constructor de copiere
-    Player(const Player& other);
-
-    // Operator de atribuire
-    Player& operator=(const Player& other);
-
-    // Operator de comparație
-    bool operator==(const Player& other) const;
-    bool operator!=(const Player& other) const;
-
+    Player(const std::string& name, char marker);
     char GetMarker() const;
-    Point GetMove() const;
-
-    // Suprascriere metode virtuale din Entity
-    void Print(std::ostream& os) const override;
-    void Read(std::istream& is) override;
+    std::string GetName() const;
+    Point GetMove(std::istream& is) const;
 };

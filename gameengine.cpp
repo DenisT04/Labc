@@ -1,43 +1,47 @@
 #include "gameengine.hpp"
-
-// Constructor implicit
-GameEngine::GameEngine() : _player1('X'), _player2('O'), _currentPlayer(&_player1) {}
+#include <iostream>
 
 // Constructor de inițializare
-GameEngine::GameEngine(const Player& p1, const Player& p2) : _player1(p1), _player2(p2), _currentPlayer(&_player1) {}
+GameEngine::GameEngine(const std::shared_ptr<Player>& p1, const std::shared_ptr<Player>& p2)
+    : _player1(p1), _player2(p2), _currentPlayer(p1) {}
 
-// Constructor de copiere
-GameEngine::GameEngine(const GameEngine& other) : _board(other._board), _player1(other._player1), _player2(other._player2), _currentPlayer(other._currentPlayer == &other._player1 ? &_player1 : &_player2) {}
-
-// Operator de atribuire
-GameEngine& GameEngine::operator=(const GameEngine& other) {
-    if (this != &other) {
-        _board = other._board;
-        _player1 = other._player1;
-        _player2 = other._player2;
-        _currentPlayer = (other._currentPlayer == &other._player1) ? &_player1 : &_player2;
+void GameEngine::Run(std::istream& is, std::ostream& os) {
+    char winner = ' ';
+    while (!IsGameOver(winner)) {
+        _board.Display(os);
+        Point move = _currentPlayer->GetMove(is);
+        if (_board.IsEmpty(move)) {
+            _board.PlaceMarker(move, _currentPlayer->GetMarker());
+            SwitchPlayer();
+        } else {
+            os << "Cell is already occupied. Try again.\n";
+        }
     }
-    return *this;
+    _board.Display(os);
+    if (winner != ' ') {
+        os << "Player " << (_currentPlayer == _player1 ? _player2->GetName() : _player1->GetName()) << " wins!\n";
+    } else {
+        os << "It's a draw!\n";
+    }
 }
 
-// Operator de comparație
-bool GameEngine::operator==(const GameEngine& other) const {
-    return _board == other._board && _player1 == other._player1 && _player2 == other._player2;
+void GameEngine::SwitchPlayer() {
+    _currentPlayer = (_currentPlayer == _player1) ? _player2 : _player1;
 }
 
-bool GameEngine::operator!=(const GameEngine& other) const {
-    return !(*this == other);
+bool GameEngine::IsGameOver(char& winner) const {
+    if (_board.CheckWin(_player1->GetMarker())) {
+        winner = _player1->GetMarker();
+        return true;
+    }
+    if (_board.CheckWin(_player2->GetMarker())) {
+        winner = _player2->GetMarker();
+        return true;
+    }
+    if (_board.IsFull()) {
+        winner = ' ';
+        return true;
+    }
+    return false;
 }
 
-// Suprascrierea operatorului de afișare
-void GameEngine::Print(std::ostream& os) const {
-    os << "Game Engine Status: \n";
-    os << _board;
-    os << "\nCurrent Player: " << (_currentPlayer == &_player1 ? "Player 1" : "Player 2") << "\n";
-}
-
-// Suprascrierea operatorului de citire
-void GameEngine::Read(std::istream& is) {
-    is >> _board;
-    // Citire mai complexă ar trebui implementată pentru jucători
-}
