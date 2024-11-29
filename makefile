@@ -1,25 +1,60 @@
-all: TicTacToe
+# Variabile pentru căi
+SRCDIR = Labc                    # Directorul cu fișierele sursă
+OBJDIR = objs                     # Directorul pentru fișierele obiect
+LIBDIR = libs                     # Directorul pentru biblioteca statică
+BINDIR = bin                      # Directorul pentru executabil
+DBFILE = tictactoe.db             # Baza de date
 
-TicTacToe: board.o gameengine.o painter.o player.o point.o main.o
-    g++ -o TicTacToe.exe board.o gameengine.o painter.o player.o point.o main.o
+# Numele executabilului final
+EXEC = TicTacToe.exe
 
-board.o:
-    g++ board.cpp -o board.o -c
+# Listă cu fișierele sursă
+SOURCES = $(SRCDIR)/board.cpp \
+          $(SRCDIR)/gameengine.cpp \
+          $(SRCDIR)/player.cpp \
+          $(SRCDIR)/point.cpp \
+          $(SRCDIR)/database.cpp \
+          $(SRCDIR)/main.cpp
 
-gameengine.o:
-    g++ gameengine.cpp -o gameengine.o -c
+# Listă cu fișierele obiect
+OBJECTS = $(OBJDIR)/board.o \
+          $(OBJDIR)/gameengine.o \
+          $(OBJDIR)/player.o \
+          $(OBJDIR)/point.o \
+          $(OBJDIR)/database.o \
+          $(OBJDIR)/main.o
 
-painter.o:
-    g++ painter.cpp -o painter.o -c
+# Numele bibliotecii statice
+LIBRARY = $(LIBDIR)/libtictactoe.lib
 
-player.o:
-    g++ player.cpp -o player.o -c
+# Căi pentru compilator
+CC = g++                            # Compilatorul
+CFLAGS = -Wall -std=c++11 -I$(SRCDIR) # Opțiuni pentru compilator (de ex., inclusiv directoarele de antet)
+AR = ar rcs                         # Comandă pentru crearea arhivei statice (biblioteca .lib)
 
-point.o:
-    g++ point.cpp -o point.o -c
+# Regula implicită: creează executabilul final
+all: $(BINDIR)/$(EXEC)
 
-main.o:
-    g++ main.cpp -o main.o -c
+# Regula pentru crearea executabilului
+$(BINDIR)/$(EXEC): $(OBJECTS) $(LIBRARY)
+	$(CC) -o $@ $^ -L$(LIBDIR) -ltictactoe
 
+# Regula pentru compilarea fișierelor sursă în fișiere obiect
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Regula pentru crearea bibliotecii statice (din fișierele obiect)
+$(LIBRARY): $(OBJECTS)
+	$(AR) $@ $^
+
+# Curățarea fișierelor obiect și executabile
 clean:
-    rm -f *.o *.exe
+	rm -f $(OBJDIR)/*.o $(BINDIR)/$(EXEC) $(LIBRARY)
+
+# Regula pentru a crea directorul de fișiere obiect dacă nu există
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+# Regula pentru a crea directorul de executabile dacă nu există
+$(BINDIR):
+	mkdir -p $(BINDIR)
