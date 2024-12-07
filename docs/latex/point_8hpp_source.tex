@@ -1,0 +1,33 @@
+\doxysection{point.\+hpp}
+\hypertarget{point_8hpp_source}{}\label{point_8hpp_source}\index{LabC/point.hpp@{LabC/point.hpp}}
+\mbox{\hyperlink{point_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{entity_8hpp}{entity.hpp}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_point}{Point}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_entity}{Entity}}\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_point_a8c779e11e694b20e0946105a9f5de842}{x}},\ \mbox{\hyperlink{class_point_a2e1b5fb2b2a83571f5c0bc0f66a73cf7}{y}};}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{comment}{//\ Constructor\ implicit}}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_point_ad92f2337b839a94ce97dcdb439b4325a}{Point}}();}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ Constructor\ de\ inițializare}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_point_ad92f2337b839a94ce97dcdb439b4325a}{Point}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_point_a8c779e11e694b20e0946105a9f5de842}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_point_a2e1b5fb2b2a83571f5c0bc0f66a73cf7}{y}});}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//\ Constructor\ de\ copiere}}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_point_ad92f2337b839a94ce97dcdb439b4325a}{Point}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_point}{Point}}\&\ other);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Operator\ de\ atribuire}}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_point}{Point}}\&\ \mbox{\hyperlink{class_point_afbace8c40e1be384358cc8fc625df4da}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_point}{Point}}\&\ other);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Operator\ de\ comparație}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_point_a9c29cd36d1ce448b8e1e56a204fe2b95}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_point}{Point}}\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_point_a3a6e3ab3998a4e26c11736cbdbc832ac}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_point}{Point}}\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Suprascriere\ metode\ virtuale\ din\ Entity}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_point_a521bcc8dcd5a047f635b0b609cde85bf}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_point_a701866f1d9a2cb809efca6f4d3632034}{Read}}(std::istream\&\ is)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ \};}
+
+\end{DoxyCode}

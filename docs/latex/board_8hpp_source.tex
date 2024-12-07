@@ -1,0 +1,22 @@
+\doxysection{board.\+hpp}
+\hypertarget{board_8hpp_source}{}\label{board_8hpp_source}\index{LabC/board.hpp@{LabC/board.hpp}}
+\mbox{\hyperlink{board_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{point_8hpp}{point.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_board}{Board}}\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ std::array<std::array<char,\ 3>,\ 3>\ \_grid;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_board_a9ee491d4fea680cf69b033374a9fdfcb}{Board}}();}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_board_a5f676d0d4e95dd81c0f1bed7a67c8c31}{IsFull}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_board_add2ac7c74c6ae0511ea99acfa905d4cb}{IsEmpty}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_point}{Point}}\&\ pos)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_board_a2b4473fdc0607260a82730555e97e7f6}{PlaceMarker}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_point}{Point}}\&\ pos,\ \textcolor{keywordtype}{char}\ marker);}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_board_aef6924ce046b03dee3cf71d66b9feaf9}{CheckWin}}(\textcolor{keywordtype}{char}\ marker)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_board_afd63f95cf82b7ddb5eca4fe66879ba01}{Display}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00016\ \};}
+
+\end{DoxyCode}

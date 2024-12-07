@@ -1,0 +1,30 @@
+\doxysection{entity.\+hpp}
+\hypertarget{entity_8hpp_source}{}\label{entity_8hpp_source}\index{LabC/entity.hpp@{LabC/entity.hpp}}
+\mbox{\hyperlink{entity_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_entity}{Entity}}\ \{}
+\DoxyCodeLine{00004\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\string~Entity}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{comment}{//\ Operator\ de\ afișare\ (virtual\ pentru\ a\ putea\ fi\ suprascris)}}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_a33de568f5b2ba33fbcfe35b50cdc6681}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ Operator\ de\ citire\ (virtual\ pentru\ a\ putea\ fi\ suprascris)}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_af2eb6986b4d4be0e0395b3ba3e6ac04a}{Read}}(std::istream\&\ is)\ =\ 0;}
+\DoxyCodeLine{00012\ \};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Operator\ de\ afișare\ pentru\ clase\ derivate}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{entity_8hpp_a205ae622852b2eb014d2cc60072a0cb2}{operator<<}}(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_entity}{Entity}}\&\ entity)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ entity.\mbox{\hyperlink{class_entity_a33de568f5b2ba33fbcfe35b50cdc6681}{Print}}(os);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00018\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Operator\ de\ citire\ pentru\ clase\ derivate}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{inline}\ std::istream\&\ \mbox{\hyperlink{entity_8hpp_a8f6adf8032466a84b691123adf574432}{operator>>}}(std::istream\&\ is,\ \mbox{\hyperlink{class_entity}{Entity}}\&\ entity)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ entity.\mbox{\hyperlink{class_entity_af2eb6986b4d4be0e0395b3ba3e6ac04a}{Read}}(is);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ is;}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}

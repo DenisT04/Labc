@@ -1,0 +1,24 @@
+\doxysection{gameengine.\+hpp}
+\hypertarget{gameengine_8hpp_source}{}\label{gameengine_8hpp_source}\index{LabC/gameengine.hpp@{LabC/gameengine.hpp}}
+\mbox{\hyperlink{gameengine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{board_8hpp}{board.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{player_8hpp}{player.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_game_engine}{GameEngine}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{class_board}{Board}}\ \_board;}
+\DoxyCodeLine{00009\ \ \ \ \ std::shared\_ptr<Player>\ \_player1;}
+\DoxyCodeLine{00010\ \ \ \ \ std::shared\_ptr<Player>\ \_player2;}
+\DoxyCodeLine{00011\ \ \ \ \ std::shared\_ptr<Player>\ \_currentPlayer;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_game_engine_a7cadc6d0af1803f1ef0b831d2e6db2e2}{GameEngine}}(\textcolor{keyword}{const}\ std::shared\_ptr<Player>\&\ p1,\ \textcolor{keyword}{const}\ std::shared\_ptr<Player>\&\ p2);}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_aecac0932520b49c97f970b64ec5366d4}{Run}}(std::istream\&\ is,\ std::ostream\&\ os);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_a0ac4bd8b1eceaeace6eb7fda815df19c}{SwitchPlayer}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_game_engine_a387b2b18b30f55087861c1cdc05904a4}{IsGameOver}}(\textcolor{keywordtype}{char}\&\ winner)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00018\ \};}
+
+\end{DoxyCode}

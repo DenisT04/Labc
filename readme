@@ -1,0 +1,42 @@
+## Jocul TicTacToe
+- Acest proiect implementează jocul TicTacToe (X și 0) utilizând limbajul de programare C++.
+
+## Descrierea proiectului
+- Proiectul este structurat modular și utilizează o bază de date SQLite pentru a salva rezultatele jocurilor.
+- Fiecare componentă a jocului este implementată într-o clasă separată, iar bibliotecile externe sunt utilizate pentru gestionarea bazelor de date.
+- Aplicația permite jucătorilor să concureze unul împotriva celuilalt și să urmărească rezultatele anterioare.
+
+## Caracteristici
+- Joci TicTacToe împotriva unui alt jucător.
+- Salvezi și încarci rezultatele jocurilor utilizând o bază de date SQLite.
+- Design modular cu clase separate pentru logica jocului, gestionarea tablei și interacțiunea cu baza de date.
+
+## Regulile jocului
+- Jocul se desfășoară pe o tablă 3x3.
+- Doi jucători, pe rând, marchează câte o celulă goală de pe tablă cu simbolul lor (X sau O).
+- Primul jucător care aliniază trei simboluri identice pe orizontală, verticală sau diagonală câștigă.
+- Dacă toate celulele sunt completate fără ca un jucător să câștige, jocul se termină la egalitate.
+
+## Instrucțiuni de construire
+- Pasul 1: Clonarea proiectului
+Clonați proiectul utilizând comanda:
+
+- git clone https://exemplu.com/proiect/tictactoe.git
+
+- Pasul 2: Construirea aplicației
+Navigați în directorul principal al proiectului și executați comanda:
+
+- make
+
+- Aceasta va compila toate fișierele sursă, va genera biblioteca necesară și va construi executabilul.
+
+- Pasul 3: Rularea aplicației
+
+Executabilul final va fi generat în directorul bin. Pentru a porni jocul, folosiți comanda:
+
+- ./bin/TicTacToe.exe
+
+- Pasul 4: Rularea testelor
+Testele unitare se află în directorul tests. Compilați și rulați testele utilizând:
+
+- make run_tests
